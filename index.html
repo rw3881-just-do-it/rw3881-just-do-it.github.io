@@ -1,2 +1,190 @@
-<p>Hello!</p>
-<p>Welcome to Rui Wang's Personal Blog</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><!-- CHANGE: Your blog title -->My Limbus-Style Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts (example: gothic + techy) -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Spectral+SC:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- GLOBAL STYLES ---------- */
+    body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace; /* CHANGE: body font */
+      background: #0c0c0c url('background.jpg') no-repeat center center fixed; 
+      /* CHANGE: replace 'background.jpg' with your image (rust/metal/tech/etc.) */
+      background-size: cover;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Semi-transparent overlay to darken bg */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: -1;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Spectral SC', serif; /* CHANGE: title font */
+      font-size: 3rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ff4c4c; /* CHANGE: neon accent color */
+      text-shadow: 0 0 8px #ff4c4c, 0 0 16px #660000;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: rgba(20, 20, 20, 0.8);
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffff; /* CHANGE: hover glow color */
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    .content {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .post {
+      background: rgba(30, 30, 30, 0.85);
+      padding: 20px;
+      margin-bottom: 40px;
+      border: 1px solid #333;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      position: relative;
+    }
+
+    .post h2 {
+      font-size: 1.8rem;
+      color: #ffcc00; /* CHANGE: post title color */
+      text-shadow: 0 0 6px #ffcc00;
+    }
+
+    .post p {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(10, 10, 10, 0.9);
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #333;
+    }
+
+    /* ---------- EXTRAS (glitch effect example) ---------- */
+    .glitch {
+      position: relative;
+      color: #fff;
+      font-size: 2rem;
+    }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+    .glitch::before {
+      animation: glitchTop 2s infinite linear alternate-reverse;
+      color: #f0f;
+    }
+    .glitch::after {
+      animation: glitchBottom 1.5s infinite linear alternate-reverse;
+      color: #0ff;
+    }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      25% { clip: rect(0, 9999px, 20px, 0); transform: translate(-2px, -2px); }
+      50% { clip: rect(0, 9999px, 0, 0); }
+      75% { clip: rect(0, 9999px, 20px, 0); transform: translate(2px, 2px); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      25% { clip: rect(10px, 9999px, 40px, 0); transform: translate(2px, 2px); }
+      50% { clip: rect(0, 9999px, 0, 0); }
+      75% { clip: rect(10px, 9999px, 40px, 0); transform: translate(-2px, -2px); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="glitch" data-text="<!-- CHANGE: your blog name -->NEGLASTIC LOGS">NEGLASTIC LOGS</h1>
+    <p><!-- CHANGE: your tagline -->Fragments of steam, neon, and tech.</p>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Posts</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+    <div class="post">
+      <h2><!-- CHANGE: post title -->First Entry</h2>
+      <p><!-- CHANGE: post text -->Welcome to my blog! This is where I’ll write about tech, games, and thoughts on dystopian aesthetics.</p>
+    </div>
+
+    <div class="post">
+      <h2>Another Post</h2>
+      <p>Imagine rusted gears turning under neon lights — that’s the feeling I want to capture here.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- CHANGE: footer text -->
+    © 2025 Your Name — Built on GitHub Pages
+  </footer>
+
+</body>
+</html>
+
