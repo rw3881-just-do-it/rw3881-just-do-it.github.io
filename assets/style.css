@@ -213,12 +213,6 @@ footer {
   animation: flicker 2s infinite;
 }
 
-.chair {
-  bottom: 20px;
-  left: 150px; /* next to fire */
-  filter: brightness(0.8);
-}
-
 /* Flicker glow for fire */
 @keyframes flicker {
   0%   { text-shadow: 0 0 5px orange, 0 0 10px red; }
