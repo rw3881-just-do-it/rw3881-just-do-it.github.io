@@ -1,0 +1,187 @@
+/* ===========================
+   assets/style.css
+   - Paste this file into your repo at /assets/style.css
+   - Put your background image in the same folder (assets/background.jpg)
+   - Customize the variables below to change colors/fonts quickly
+   =========================== */
+
+/* ---------- EASY CUSTOMIZATIONS (CHANGE THESE) ---------- */
+:root{
+  --bg-color: #0c0c0c;
+  --overlay: rgba(0,0,0,0.65);
+  --accent: #ff4c4c;     /* main neon accent (title) */
+  --accent-2: #00ffff;   /* secondary neon (links / hover) */
+  --muted: #bdbdbd;
+  --card-bg: rgba(30,30,30,0.85);
+  --card-border: #333;
+  --text: #e0e0e0;
+  --max-width: 960px;
+}
+
+/* ---------- GLOBAL ---------- */
+* { box-sizing: border-box; }
+html,body { height:100%; }
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace; /* keep the Google Fonts <link> in your HTML */
+  background: var(--bg-color) url('background.jpg') no-repeat center center fixed; /* CHANGE: 'background.jpg' here */
+  background-size: cover;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* overlay between background and content */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  z-index: 0; /* sits above bg, below page content */
+  pointer-events: none;
+}
+
+/* ensure main content sits above overlay */
+header, nav, .content, footer { position: relative; z-index: 1; }
+
+/* ---------- HEADER ---------- */
+header {
+  text-align: center;
+  padding: 72px 20px;
+}
+
+header h1 {
+  font-family: 'Spectral SC', serif; /* change in HTML by keeping/changing the fonts <link> */
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(255,76,76,0.9);
+}
+
+/* poetic tagline */
+.tagline {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* ---------- NAVIGATION ---------- */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 14px;
+  background: rgba(12,12,12,0.6);
+  border-top: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(4px);
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: color .25s, text-shadow .25s, transform .12s;
+}
+
+nav a:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 8px rgba(0,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+/* add this class to the link for the current page */
+nav a.active {
+  color: var(--accent-2);
+  text-shadow: 0 0 10px rgba(0,255,255,0.18);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 0 25px rgba(0,255,255,0.03) inset;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+.content {
+  max-width: var(--max-width);
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.post {
+  background: var(--card-bg);
+  padding: 22px;
+  margin-bottom: 36px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+  border-radius: 6px;
+}
+
+.post h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #ffcc00;   /* change if you want a different post-title color */
+  text-shadow: 0 0 6px rgba(255,204,0,0.1);
+}
+
+.post p { color: #ddd; font-size: 1rem; }
+
+/* small helper for muted boxes/side notes */
+.muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 28px 14px;
+  background: rgba(6,6,6,0.85);
+  color: #8e8e8e;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* ---------- GLITCH / LAYERED TITLE (subtle) ---------- */
+.glitch { position: relative; display: inline-block; z-index: 1; color: var(--accent); }
+
+/* pseudo-elements are decorative copies that sit *behind* main heading */
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 0;
+  opacity: 0.28;
+  filter: blur(1px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.glitch::before { transform: translate(-2px, -1px); color: rgba(255,120,120,0.45); }
+.glitch::after  { transform: translate(2px, 1px);   color: rgba(120,255,255,0.45); }
+
+@keyframes subtleGlitch {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+/* apply a slow, gentle motion */
+.glitch::before, .glitch::after { animation: subtleGlitch 3s infinite linear; }
+
+/* ---------- SMALL & RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  header { padding: 40px 12px; }
+  .tagline { font-size: 0.98rem; }
+  .post { padding: 16px; }
+  nav { gap: 8px; padding: 10px; flex-wrap: wrap; }
+  header h1 { font-size: 1.9rem; letter-spacing: 2px; }
+}
+
+/* ---------- TINY UTILITY ---------- */
+/* centered container quick helper */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
