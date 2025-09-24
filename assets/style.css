@@ -58,7 +58,11 @@ header h1 {
   color: var(--accent);
   margin: 0;
   line-height: 1;
-  text-shadow: 0 0 8px rgba(255,76,76,0.9);
+   /* GLOW effect */
+  text-shadow:
+    0 0 5px rgba(255,76,76,0.8),
+    0 0 15px rgba(255,76,76,0.6),
+    0 0 30px rgba(255,76,76,0.4);
 }
 
 /* poetic tagline */
@@ -67,6 +71,7 @@ header h1 {
   color: var(--muted);
   font-size: 1.05rem;
   font-style: italic;
+   text-shadow: 0 0 4px rgba(0,255,255,0.2);
 }
 
 /* ---------- NAVIGATION ---------- */
@@ -102,7 +107,9 @@ nav a.active {
   color: var(--accent-2);
   text-shadow: 0 0 10px rgba(0,255,255,0.18);
   background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  box-shadow: 0 0 25px rgba(0,255,255,0.03) inset;
+  box-shadow:
+     0 0 10px rgba(255,255,255,0.05),
+     0 0 25px rgba(0,255,255,0.15);
 }
 
 /* ---------- MAIN CONTENT ---------- */
@@ -117,7 +124,9 @@ nav a.active {
   padding: 22px;
   margin-bottom: 36px;
   border: 1px solid var(--card-border);
-  box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+  box-shadow:
+     0 0 10px rgba(255,255,255,0.05),
+     0 0 25px rgba(0,255,255,0.15);
   border-radius: 6px;
 }
 
@@ -125,7 +134,9 @@ nav a.active {
   margin-top: 0;
   font-size: 1.6rem;
   color: #ffcc00;   /* change if you want a different post-title color */
-  text-shadow: 0 0 6px rgba(255,204,0,0.1);
+  text-shadow:
+    0 0 5px rgba(255,204,0,0.9),
+    0 0 15px rgba(255,204,0,0.5);
 }
 
 .post p { color: #ddd; font-size: 1rem; }
