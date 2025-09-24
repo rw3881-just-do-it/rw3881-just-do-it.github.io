@@ -1,7 +1,6 @@
 /* ===========================
    assets/style.css
-   - Paste this file into your repo at /assets/style.css
-   - Put your background image in the same folder (assets/background.jpg)
+   - Put background image in the same folder (assets/background.jpg)
    - Customize the variables below to change colors/fonts quickly
    =========================== */
 
@@ -219,4 +218,22 @@ footer {
   50%  { text-shadow: 0 0 20px orange, 0 0 30px yellow; }
   100% { text-shadow: 0 0 5px orange, 0 0 10px red; }
 }
+
+/* === Technical Page Gear === */
+.gear {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 4rem;   /* adjust size */
+  z-index: 10;
+  pointer-events: none;
+  animation: spin 12s linear infinite; /* slow rotation */
+}
+
+/* Rotation animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 
