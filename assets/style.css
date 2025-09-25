@@ -236,15 +236,3 @@ footer {
   to { transform: rotate(360deg); }
 }
 
-/* Normal links */
-a {
-  color: gold;
-  text-decoration: none;  /* removes underline */
-}
-
-/* Hover effect */
-a:hover {
-  color: orange;
-  text-shadow: 0 0 5px gold;
-}
-
