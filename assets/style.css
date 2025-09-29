@@ -261,7 +261,6 @@ footer {
   background: #fff;       /* White background for essay area */
   color: #111;            /* Black text inside */
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2); /* Glow against dark site */
 }
 
 /* Headings inside essay */
