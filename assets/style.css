@@ -236,3 +236,26 @@ footer {
   to { transform: rotate(360deg); }
 }
 
+
+/* Scroll reveal effect for essay paragraphs */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Essay container styling */
+.reading {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+
