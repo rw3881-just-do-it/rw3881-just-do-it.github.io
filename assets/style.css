@@ -259,7 +259,7 @@ footer {
   font-size: 1.15rem;
 
   background: #ffffff !important;  /* force pure white */
-  color: #111 !important;          /* solid black text */
+  color: #ffffff       
   border-radius: 10px;
   box-shadow: none;
 
@@ -270,7 +270,7 @@ footer {
 .reading h2, .reading h3 {
   text-align: center;
   margin: 1em 0;
-  color: #000;
+  color: #ffffff;
 }
 
 /* Paragraphs inside essay */
