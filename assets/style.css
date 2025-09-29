@@ -249,13 +249,30 @@ footer {
   transform: translateY(0);
 }
 
-/* Essay container styling */
+/* Reading page mode */
 .reading {
   max-width: 800px;
   margin: 50px auto;
-  padding: 20px;
-  line-height: 1.7;
-  font-size: 1.1rem;
+  padding: 40px;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  background: #fff;       /* white background */
+  color: #111;            /* near-black text */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3); /* subtle shadow so it feels like a page */
+}
+
+/* Essay headings */
+.reading h2, .reading h3 {
+  text-align: center;
+  margin: 1em 0;
+  color: #000;
+}
+
+/* Essay paragraphs */
+.reading p {
+  margin: 1.2em 0;
+  text-align: justify;
 }
 
 
