@@ -258,9 +258,12 @@ footer {
   line-height: 1.8;
   font-size: 1.15rem;
 
-  background: #fff;       /* White background for essay area */
-  color: #111;            /* Black text inside */
+  background: #ffffff !important;  /* force pure white */
+  color: #111 !important;          /* solid black text */
   border-radius: 10px;
+  box-shadow: none;
+
+  opacity: 1 !important;           /* prevent transparency */
 }
 
 /* Headings inside essay */
