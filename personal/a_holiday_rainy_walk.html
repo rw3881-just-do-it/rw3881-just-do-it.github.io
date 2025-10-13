@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Holiday Rainy Walk – Rui's Blog</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <!-- 🔹 Shared site header/nav -->
+  <header>
+    <h1>A Holiday Rainy Walk</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Essay content -->
+  <main class="reading">
+
+    <!-- copy your essay paragraphs here, each wrapped in p.reveal -->
+    <h2>A Holiday Rainy Walk</h2>
+
+    <p class="reveal">It seems to be some kind of holiday weekend in the U.S. – a nice, long three-day break.</p>
+    
+    <p class="reveal">Only thing is, it’s been raining all three days.</p>
+    
+    <p class="reveal">It is not really cold enough yet for long underwear, like what I used to wear in Beijing’s chill autumn. I overestimated how quickly New York would turn cold—and underestimate how persistent its autumn rain could be. Carrying an umbrella in New York rain is a bad idea. So is not carrying one. Maybe it’s because the city sits by the Atlantic Ocean, every time New York rains, the wind joins in. With the umbrella open, I worry it will snap in the wind; once I close it, the fine drizzle slowly soaks into my jacket. My mother’s beautiful orange jacket, the color reminds me of sunset and sunrise. I hardly dare to wear the heavier jacket and coats I bought with me, since they can not go into the washer and dryer too often, and I might unconsciously afraid that the scent of home would be lost as I pull them out off the machine. So, I make do with what I layer underneath instead. Synthetic, perfect; chemical fiber, good; wool, let me reconsider whether to wear it today or save it for another unknown important day in god-know-when future.</p>
+    
+    <p class="reveal">I like Greenwood Cemetery near downtown Brooklyn. A friend asked me why I went to cemetery in a holiday when people were expected to lie in the bed rather than lie on the grass in a graveyard. Partly I wanted to walk more around the city, and partly, a cemetery is sounded like a quite place to go. On the way I passed what looked like a cluster of small factories: a stretch of metal junkyards like the ones I had only seen in video games, rows of pickup trucks lined up neatly like sardine with olive oil in tin can, cars running along steel viaducts. Though it was daytime, the streets were empty—people were probably all in their cars which were rushing by 3 meters away from me. It’s strange to think that less than an hour’s walk south from downtown Brooklyn, I can find a place so far removed from the “greatest city of the world” image in my mind.</p>
+    
+    <p class="reveal">Looking north, I could see the skyline of downtown Brooklyn—glass towers and uneven rows of brick buildings crowding together on the slopes, all colorful dyed by the beam of sunset, and glass on the walls reflected lights like floating sea wave in the air. So downtown Brooklyn actually sits on higher ground? I always thought Brooklyn Heights was the one “on the hill.”</p>
+    
+    <p class="reveal">Once I stepped inside the cemetery, everything suddenly quieted down. It felt as if there were some invisible barrier around: the traffic noise, the clanking of machinery from nearby workshops, even the chatter from residential blocks—all gone. Even the wind seemed to hold its breath, brushing only slightly over the fallen leaves. My own footsteps sounded almost too loud. Perhaps it was just because it was already past five in the evening, and there weren’t many people left in the cemetery. But still, the silence was remarkable. There were many huge gray squirrels left, though.</p>
+    
+    <p class="reveal">Here in U.S., at least in New York City, gray squirrels are everywhere—in cemeteries, in parks, on nearby islands, on campus. I used to think pigeons ruled New York. But maybe no—pigeons rule the city, and gray squirrels rule nature. And all the usage of human is to define where is the “city” and where is the “nature.”</p>
+
+  </main>
+
+  <!-- 🔹 Back button -->
+  <div style="text-align:center; margin:40px;">
+    <a href="/fanfiction.html" class="btn">⬅ Back to Fanfiction</a>
+  </div>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
 
