@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboMaster Prep</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <!-- 🔹 Shared site header/nav -->
+  <header>
+    <h1>A Holiday Rainy Walk</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
 
+  <!-- 🔹 Essay content -->
+  <main>
+    <p>通信协议</p>
+    <a href="https://zhuanlan.zhihu.com/p/678148191">通信协议</a>
+    <p>串行通信协议详解</p>
+    <a href="https://blog.csdn.net/m0_56694518/article/details/131386125">串行详解</a>
+
+   
+  </main>
+
+  <!-- 🔹 Back button -->
+  <div style="text-align:center; margin:40px;">
+    <a href="/fanfiction.html" class="btn">⬅ Back to Fanfiction</a>
+  </div>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
