@@ -23,33 +23,14 @@
       <a href="/fanfiction.html">Fanfiction</a>
     </nav>
   </header>
-
-  <main>
-    <p>通信协议</p>
-    <a href="https://zhuanlan.zhihu.com/p/678148191">通信协议</a>
-    <p>串行通信协议详解</p>
-    <a href="https://blog.csdn.net/m0_56694518/article/details/131386125">串行详解</a>
-
-   
-  </main>
-
-  <!-- 🔹 Back button -->
-  <div style="text-align:center; margin:40px;">
-    <a href="/fanfiction.html" class="btn">⬅ Back to Fanfiction</a>
+  
+   <div class="content">
+    <div class="post">
+      <p>通信协议</p>
+      <a href="https://zhuanlan.zhihu.com/p/678148191">通信协议</a>
+      <p>串行通信协议详解</p>
+      <a href="https://blog.csdn.net/m0_56694518/article/details/131386125">串行详解</a>
+    </div>
   </div>
-
-  <!-- 🔹 Scroll reveal script -->
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(r => observer.observe(r));
-  </script>
 </body>
 </html>
