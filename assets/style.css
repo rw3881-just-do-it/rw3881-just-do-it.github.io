@@ -279,13 +279,13 @@ footer {
   text-align: justify;
 }
 
-.post img{
+/*.post img{
    max-width:100%;
    display: block;
    margin: 16px auto;
    border-radius: 6px;
    opacity:0.95;
-}
+}*/
 
 .post img.inline-image{
    width: 320px;
