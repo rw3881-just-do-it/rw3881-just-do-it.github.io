@@ -288,9 +288,10 @@ footer {
 }
 
 .post img.inline-image{
-   width: 100px;
-   float: right;
-   margin: 0 20px 10px 0;
+   width: 320px;
+   max-width:none;
+   float:right;
+   margin: 0 0 12px 20px;
    border-radius:6px;
    opacity:0.95
 }
