@@ -41,12 +41,39 @@
     </div>
   </div>
 
+  <!-- Background Music (page-specific) -->
+  <audio
+    id="bg-music"
+    loop
+    muted
+    data-track="onemorelight"
+  >
+    <source src="assets/onemorelight.mp3" type="audio/mpeg">
+  </audio>
+  
+  <!-- Music Controls -->
+  <div id="music-controls">
+    <button id="mute-btn" aria-label="Mute music">🔇</button>
+    <input
+      id="volume-slider"
+      type="range"
+      min="0"
+      max="1"
+      step="0.01"
+      value="0.3"
+      aria-label="Music volume"
+    >
+  </div>
+
+  <script src="js/main.js"></script>
+
+
   <!-- FOOTER -->
   <footer>
     <!-- CHANGE: footer text -->
     © 2025 Rui — Built on GitHub Pages
   </footer>
-  
+
   <div class="corner-emoji fire">🔥</div>
 </body>
 </html>
