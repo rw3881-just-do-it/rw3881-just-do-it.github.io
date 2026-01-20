@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversation with Cali</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <!-- 🔹 Shared site header/nav -->
+  <header>
+    <h1>Conversation with Cali</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Essay content -->
+  <main class="reading">
+
+    <!-- copy your essay paragraphs here, each wrapped in p.reveal -->
+    <h2>Conversation with Cali</h2>
+
+    <p class="reveal">Rui recently spoke with Cali about the technology she uses every day. From the Polaris BrailleSense 6 to VoiceOver on iPhone, 
+      they discussed tools that support independence—while also touching on everyday challenges like payment systems 
+      that don’t offer audio prompts.</p>
+    
+    <p class="reveal">Instagram Link: <a href="https://www.instagram.com/p/DSh_Du0D1Jm/">Conversation with Cali</a></p>
+    <p class="reveal">Special Thanks to Cali and my partners.</p>
+    
+    
+  </main>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
 
