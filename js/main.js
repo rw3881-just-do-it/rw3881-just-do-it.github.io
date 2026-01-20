@@ -1,35 +1,65 @@
 (function () {
-  function initMusic() {
-    const music = document.getElementById("bg-music");
-    if (!music) return;
+  // Single global music reference
+  let globalMusic = window.globalMusic || null;
 
+  function initMusic() {
+    // Page-specific audio
+    const pageAudio = document.getElementById("bg-music");
     const muteBtn = document.getElementById("mute-btn");
     const volumeSlider = document.getElementById("volume-slider");
 
-    // Stop any other audio (SPA safety)
-    document.querySelectorAll("audio").forEach(a => {
-      if (a !== music) {
-        a.pause();
-        a.currentTime = 0;
-      }
-    });
+    if (!muteBtn || !volumeSlider) return;
 
-    // Restore user settings
     const savedVolume = localStorage.getItem("musicVolume");
     const savedMuted = localStorage.getItem("musicMuted");
 
+    if (!globalMusic) {
+      // First time: assign the page audio
+      if (pageAudio) {
+        globalMusic = pageAudio;
+        window.globalMusic = globalMusic; // persist globally
+        setupMusic(globalMusic, savedVolume, savedMuted, muteBtn, volumeSlider);
+      }
+    } else {
+      // Global music exists
+      const newTrack = pageAudio?.dataset.track || null;
+      if (newTrack && newTrack !== globalMusic.dataset.track) {
+        // Stop old music
+        globalMusic.pause();
+        globalMusic.currentTime = 0;
+
+        // Replace global music
+        globalMusic = pageAudio;
+        window.globalMusic = globalMusic;
+        setupMusic(globalMusic, savedVolume, savedMuted, muteBtn, volumeSlider);
+      }
+      // else: same track or page has no audio => keep playing
+    }
+  }
+
+  function setupMusic(music, savedVolume, savedMuted, muteBtn, volumeSlider) {
     music.volume = savedVolume !== null ? savedVolume : 0.3;
     music.muted = savedMuted === "true";
     volumeSlider.value = music.volume;
-
     updateIcon();
 
-    // Autoplay after interaction
-    document.addEventListener("click", () => {
+    let hasStarted = false;
+
+    // Start on first user interaction
+    function startMusic() {
+      if (hasStarted) return;
+      hasStarted = true;
       music.muted = savedMuted === "true";
       music.play().catch(() => {});
       updateIcon();
-    }, { once: true });
+      document.removeEventListener("click", startMusic);
+      document.removeEventListener("keydown", startMusic);
+      document.removeEventListener("touchstart", startMusic);
+    }
+
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
 
     // Loop safeguard
     music.addEventListener("ended", () => {
@@ -37,7 +67,7 @@
       music.play();
     });
 
-    // Mute toggle
+    // Mute button
     muteBtn.onclick = (e) => {
       e.stopPropagation();
       music.muted = !music.muted;
@@ -45,7 +75,7 @@
       updateIcon();
     };
 
-    // Volume control
+    // Volume slider
     volumeSlider.oninput = () => {
       music.volume = volumeSlider.value;
       music.muted = music.volume === 0;
@@ -60,9 +90,6 @@
     }
   }
 
-  // Run once on load
+  // Run on initial page load
   document.addEventListener("DOMContentLoaded", initMusic);
 
-  // Run again on SPA navigation
-  window.addEventListener("spa:navigation", initMusic);
-})();
