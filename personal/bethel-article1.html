@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bethel-article1</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <!-- 🔹 Shared site header/nav -->
+  <header>
+    <h1>When “Tap Here” Isn’t Clear: Why Self-Checkout Machines Can Still Leave Visually Impaired Shoppers Behind</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Essay content -->
+  <main class="reading">
+
+    <!-- copy your essay paragraphs here, each wrapped in p.reveal -->
+    <h2>When “Tap Here” Isn’t Clear: Why Self-Checkout Machines Can Still Leave Visually Impaired Shoppers Behind</h2>
+
+    <p class="reveal">Self-checkout machines are everywhere now. In supermarkets, convenience stores, and large retail chains, they promise speed, 
+      efficiency, and independence. For many shoppers, these machines have become part of a routine—scan, tap, leave. But for visually impaired people, 
+      this “simple” process often comes with hesitation and uncertainty. That simple moment—trying to pay independently at a 
+      self-checkout—shows something deeper about how everyday technology can still leave people behind.</p>
+
+    <p class="reveal">For many sighted shoppers, tapping a card or following on-screen prompts at self-checkout machines is automatic and intuitive. But for
+      people who are blind or have low vision, these interactions can be confusing, especially when audio instructions lack clear audio or tactile feedback.</p>
+    
+    <p class="reveal">The biggest challenge is that most self-checkout machines rely heavily on visual cues—tiny text, icons, or changing 
+      screens that move from one step to the next without clear non-visual guidance. If a machine tells you “tap card here” but doesn’t provide 
+      spoken directions, it’s easy to miss. If a prompt changes or a button is out of place, there’s no way to know until you’ve already tried and failed. 
+      These inconveniences can turn what should be a simple task into a frustrating and disempowering experience.</p>
+    
+    <p class="reveal">Even worse, there is often no consistent audio guidance to tell you what’s happening next. When a machine beeps, 
+      is it confirming your action, or telling you something went wrong? Without context, it is impossible to tell. Besides, if something doesn’t work 
+      exactly right, like a double scan or a delayed card tap, you often have to wait for a staff member to step in, which is not the purpose of independence. 
+      Many visually impaired shoppers have shared stories like this online, noting that even when a store says its self-checkout is accessible, the reality can feel far from it.</p>
+
+    <p class="reveal">So, when I read about Target’s new accessible self-checkout rollout, I was hopeful—and also curious about whether it truly solves 
+      these problems. Target describes this system as a first-of-its-kind accessible self-checkout that was designed with and for people who are blind or 
+      have low vision. The machine includes features like Braille and high-contrast buttons, a headphone jack with adjustable volume, physical navigation 
+      buttons, and an info key. There is also a custom tactile controller to help users move through checkout step be step. 
+      Through this set up, users can hear every screen prompt and payment step in a single audio stream, with guidance for scanning, paying, and complete checkout.</p>
+
+    <p class="reveal">These design choices, especially tactile controls paired with clear audio, are meaningful improvements. 
+      They begin to address the exact issues my interviewee struggled with: unclear touch instructions and the lack of predictable, accessible feedback. 
+      Integrating these features directly into the machine, rather than relying on an app or ad-hoc workaround, can make a huge difference 
+      in independence and dignity for shoppers.</p>
+
+    <p class="reveal">But it is also fair to be cautiously optimistic. Some visually impaired users who have actually tried early versions of this system 
+      say that while the concept is encouraging, the execution is not always as seamless as what the press materials suggest. They describe situations where 
+      audio can feel overly robotic or hard to follow, and where simple errors like scanning an item twice still require staff intervention. These are not 
+      necessary faults of the accessibility features themselves, but they do highlight the limits of current self-checkout technology: 
+      even with added supports, self-checkout systems may still depend on error recovery processes that are not fully accessible without human help.</p>
+
+    <p class="reveal">For now, while self-checkout machines are still catching up with real accessibility needs, small human interactions can make a 
+      meaningful difference. For visually impaired shoppers, it can help to use clear, specific language when asking for assistance. When instructions 
+      are vague, it is okay to ask for clarification, such as “Does ‘tap’ mean above the screen or below it?” or “Can you guide my hand to the tap area?” 
+      For sighted shoppers or store staff, offering help works best when it is calm and verbal. It is more helpful to describe locations using directions 
+      or distance—for example, “There is a raised square button just below the keypad”—instead of pointing and saying “over there.” 
+      Asking “Would you like verbal directions, or would you prefer me to guide your hand?” gives control back to the person receiving help.</p>
+
+    <p class="reveal">Assistance does not need to be rushed. A few extra seconds spent explaining what the machine is doing—whether a payment is processing, 
+      approved, or needs to be retried—can prevent confusion and frustration. Accessibility is also about communication. 
+      Until technology fully bridges the gap, kindness, patience, and precise language remain some of the most effective accessibility tools we have.</p>
+
+    <p class="reveal">As stores and tech teams continue to iterate, I hope we will see more self-checkout systems that consistently 
+      support independent use. Not just a demo or press event, but in every day. Because everyone deserves a shopping experience that 
+      is not only efficient, but also respectful, empowering, and clear.</p>
+
+    <p class="reveal">Reference:</br>
+Target Corporate Announcement</br>
+Target Corporation. “Just in Time for the Holidays: Target Launches First-of-its-Kind Accessible Self-Checkout, Built with the Blind Community.” Target Corporate News & Features, 26 Sept. 2025.</br>
+
+Reddit Community Discussion</br>
+User comments on “Target’s self check out will be accessible for the blind” on the subreddit r/Blind. Reddit, 1 Oct. 2025.</br>
+</p>
+    
+    <p class="reveal">Special Thanks to Michael and my supporters at BETHEL, Zach and Guillaume.</p>
+    
+    
+  </main>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
