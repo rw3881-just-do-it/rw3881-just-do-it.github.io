@@ -1,95 +1,84 @@
-(function () {
-  // Single global music reference
-  let globalMusic = window.globalMusic || null;
+(function() {
+  const music = document.getElementById("global-music");
+  const stopBtn = document.getElementById("mute-btn"); // we reuse the same element
+  const volumeSlider = document.getElementById("volume-slider");
 
-  function initMusic() {
-    // Page-specific audio
-    const pageAudio = document.getElementById("bg-music");
-    const muteBtn = document.getElementById("mute-btn");
-    const volumeSlider = document.getElementById("volume-slider");
+  if (!music || !stopBtn || !volumeSlider) return;
 
-    if (!muteBtn || !volumeSlider) return;
+  // Restore user settings
+  const savedVolume = localStorage.getItem("musicVolume");
+  music.volume = savedVolume !== null ? savedVolume : 0.3;
+  volumeSlider.value = music.volume;
 
-    const savedVolume = localStorage.getItem("musicVolume");
-    const savedMuted = localStorage.getItem("musicMuted");
+  let isPlaying = false;
 
-    if (!globalMusic) {
-      // First time: assign the page audio
-      if (pageAudio) {
-        globalMusic = pageAudio;
-        window.globalMusic = globalMusic; // persist globally
-        setupMusic(globalMusic, savedVolume, savedMuted, muteBtn, volumeSlider);
-      }
-    } else {
-      // Global music exists
-      const newTrack = pageAudio?.dataset.track || null;
-      if (newTrack && newTrack !== globalMusic.dataset.track) {
-        // Stop old music
-        globalMusic.pause();
-        globalMusic.currentTime = 0;
-
-        // Replace global music
-        globalMusic = pageAudio;
-        window.globalMusic = globalMusic;
-        setupMusic(globalMusic, savedVolume, savedMuted, muteBtn, volumeSlider);
-      }
-      // else: same track or page has no audio => keep playing
-    }
+  function updateIcon() {
+    stopBtn.textContent = isPlaying ? "⏸️" : "▶️";
   }
 
-  function setupMusic(music, savedVolume, savedMuted, muteBtn, volumeSlider) {
-    music.volume = savedVolume !== null ? savedVolume : 0.3;
-    music.muted = savedMuted === "true";
-    volumeSlider.value = music.volume;
+  function playMusic() {
+    music.play().then(() => {
+      isPlaying = true;
+      updateIcon();
+    }).catch(() => {});
+  }
+
+  function pauseMusic() {
+    music.pause();
+    isPlaying = false;
     updateIcon();
-
-    let hasStarted = false;
-
-    // Start on first user interaction
-    function startMusic() {
-      if (hasStarted) return;
-      hasStarted = true;
-      music.muted = savedMuted === "true";
-      music.play().catch(() => {});
-      updateIcon();
-      document.removeEventListener("click", startMusic);
-      document.removeEventListener("keydown", startMusic);
-      document.removeEventListener("touchstart", startMusic);
-    }
-
-    document.addEventListener("click", startMusic);
-    document.addEventListener("keydown", startMusic);
-    document.addEventListener("touchstart", startMusic);
-
-    // Loop safeguard
-    music.addEventListener("ended", () => {
-      music.currentTime = 0;
-      music.play();
-    });
-
-    // Mute button
-    muteBtn.onclick = (e) => {
-      e.stopPropagation();
-      music.muted = !music.muted;
-      localStorage.setItem("musicMuted", music.muted);
-      updateIcon();
-    };
-
-    // Volume slider
-    volumeSlider.oninput = () => {
-      music.volume = volumeSlider.value;
-      music.muted = music.volume === 0;
-      localStorage.setItem("musicVolume", music.volume);
-      localStorage.setItem("musicMuted", music.muted);
-      updateIcon();
-    };
-
-    function updateIcon() {
-      muteBtn.textContent =
-        music.muted || music.volume === 0 ? "🔇" : "🔊";
-    }
   }
 
-  // Run on initial page load
-  document.addEventListener("DOMContentLoaded", initMusic);
+  // Start on first user gesture
+  function startMusic() {
+    if (!isPlaying) playMusic();
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("keydown", startMusic);
+    document.removeEventListener("touchstart", startMusic);
+  }
 
+  document.addEventListener("click", startMusic);
+  document.addEventListener("keydown", startMusic);
+  document.addEventListener("touchstart", startMusic);
+
+  // Stop / play toggle button
+  stopBtn.onclick = (e) => {
+    e.stopPropagation();
+    if (isPlaying) pauseMusic();
+    else playMusic();
+  };
+
+  // Volume control
+  volumeSlider.oninput = () => {
+    music.volume = volumeSlider.value;
+    localStorage.setItem("musicVolume", music.volume);
+  };
+
+  // Loop safeguard
+  music.addEventListener("ended", () => {
+    music.currentTime = 0;
+    music.play();
+    isPlaying = true;
+    updateIcon();
+  });
+
+  // SPA navigation
+  window.addEventListener("spa:navigation", () => {
+    const pageAudio = document.querySelector('[data-track]');
+    if (pageAudio) {
+      const track = pageAudio.dataset.track;
+      const src = pageAudio.src || pageAudio.getAttribute('src');
+
+      if (music.src !== src) {
+        music.src = src;
+        music.dataset.track = track;
+        music.currentTime = 0;
+        if (isPlaying) playMusic();
+      }
+    }
+  });
+
+  // Initialize icon
+  updateIcon();
+
+})();
