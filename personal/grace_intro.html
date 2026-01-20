@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversation with Grace</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <!-- 🔹 Shared site header/nav -->
+  <header>
+    <h1>Conversation with Grace-Intro</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Essay content -->
+  <main class="reading">
+
+    <!-- copy your essay paragraphs here, each wrapped in p.reveal -->
+    <h2>Conversation with Grace-Intro</h2>
+
+    <p class="reveal">Grace is working toward becoming a music therapist because she loves music and helping others. 
+      By mastering her instrument through touch and memory, she’s preparing for a career that blends creativity with care. 
+      Stories like this show how learning methods and accessible approaches open doors to meaningful professions.</p>
+    
+    <p class="reveal">Instagram Link: <a href="https://www.instagram.com/p/DTn1nGyjRWL/">Conversation with Grace-Intro</a></p>
+    <p class="reveal">Special Thanks to Grace and my supporters at BETHEL, Zach and Guillaume.</p>
+    
+    
+  </main>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
 
