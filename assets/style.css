@@ -16,19 +16,24 @@
 }
 
 a {
-  color: #60A5FA; /* soft sapphire blue */
+  color: #3B5F8A;
   text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
-a:hover {
-  color: #FACC15;
-  text-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
-}
+
 a:visited {
-  color: #93C5FD;
+  color: #2F4E73;
 }
-a:active {
-  color: #FFFFFF;
+
+a:hover,
+a:visited:hover {
+  color: #D4AF37;
+  text-shadow:
+    0 0 4px rgba(212, 175, 55, 0.6),
+    0 0 8px rgba(212, 175, 55, 0.4);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.7);
 }
+
 
 
 /* ---------- GLOBAL ---------- */
