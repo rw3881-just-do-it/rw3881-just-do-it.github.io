@@ -362,40 +362,6 @@ footer {
   cursor: pointer;
 }
 
-/* Gallery layout */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
-}
-
-/* Individual photo block */
-.gallery figure {
-  margin: 0;
-  text-align: center;
-}
-
-/* Gallery images */
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  opacity: 0.95;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Subtle hover effect */
-.gallery img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 18px rgba(255, 215, 100, 0.25);
-}
-
-/* Captions */
-.gallery figcaption {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #bfa76a; /* soft gold */
   font-style: italic;
 }
 
