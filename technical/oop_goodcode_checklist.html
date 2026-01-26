@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Submission Checklist</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>C++ Code Submission Checklist</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- content -->
+  <main class="reading">
+    
+    <p class="reveal"> Header Comments: Name of the File, Whay's the file about,
+      Name of the Author</p>
+    <p class="reveal"> Parameter passing: pass by value, pass by reference, or pass by const reference.</p>
+    <p class="reveal"> Block comments: Struct, Loops, Functions (about, parameters, returns)</p>
+    <p class="reveal"> Functions: identify first. Code block after main().</p>
+    
+    
+  </main>
+
+  <!-- 🔹 Back button -->
+  <div style="text-align:center; margin:40px;">
+    <a href="/fanfiction.html" class="btn">⬅ Back to Fanfiction</a>
+  </div>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
