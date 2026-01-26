@@ -16,13 +16,13 @@
 }
 
 a {
-  color: #3B5F8A;
+  color: #F5D327;
   text-decoration: none;
   transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 a:visited {
-  color: #2F4E73;
+  color: #F4CD0B;
 }
 
 a:hover,
