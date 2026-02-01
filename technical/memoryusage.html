@@ -20,6 +20,61 @@
 
   <!-- content -->
   <main class="reading">
+    
+    <p> PATH in Windows:
+      PATH provides absolute paths to executable files. Executable files are run in CMD (Command Prompt). 
+      After a path is added to PATH, executables located in that directory can be run by typing their filename without the extension. 
+      As a result, commands can be executed from any project directory.
+      (Note: Windows distinguishes different types of content using file extensions, whereas Unix-based operating systems
+      (e.g., Linux) treat everything uniformly as files.)
+    </p>
+
+    <p> Command:
+      A command is the filename of an executable file on the operating system. CMD itself can also 
+      be considered an executable file, similar to regular software.
+      Example: when opening a .txt file, Windows passes the absolute path of the .txt file 
+      as an argument to notepad (the executable/software itself). notepad readsthe 
+      file contents via the absolute path and then renders and displays them to the user through its GUI.
+    </p>
+
+    <p> When CMD runs a command, it first checks whether the filename contains an absolute path.
+      <li> If it does, CMD searches only in that absolute path for the executable; if not found, it reports an error.</li>
+      <li> If the filename does not contain an absolute path, CMD searches the current working directory.</li>
+      <li> If still not found, CMD searches built-in OS commands.</li>
+      <li> If still not found, CMD searches the directories listed in the PATH environment variable.</li>
+      If the executable is not found after all these steps, CMD reports an error.
+    </p>
+
+    <p> Heap:
+      The heap is a global storage area. Any thread can allocate memory on the heap. 
+      Therefore, heap allocation must be synchronized; otherwise, thread blocking issues may occur. 
+      In addition, memory management is required to avoid memory overflow.
+    </p>
+
+    <p>Stack and data lifetime:
+      Due to the stack’s first-in, last-out (LIFO) property, 
+      the lifetime of a stack frame cannot exceed the scope in which it is called.
+      Data stored on the stack is released when a function returns, so stack data 
+      cannot be passed outside the function scope.
+      Therefore, data with a longer lifetime (i.e., data that should persist after leaving a scope) 
+      must be stored in a global storage area, namely the heap.
+    </p>
+
+    <p>Thread:
+      A thread is the smallest unit of execution scheduled by the operating system. 
+      It represents a single control flow during execution.
+      A thread consists of a thread ID, instruction pointer, registers, and a stack.
+      Every program has at least one thread. If a program has only one thread, that 
+      thread is the program itself.
+    </p>
+    
+    <p>Process:
+      A process is composed of threads. A process has its own independent address space, 
+      while threads do not have separate address spaces.
+      As a result, threads within the same process share the process’s address space.
+      Multiple processes can execute in parallel, serially, or concurrently.
+    </p>
+    
     <p class="reveal"> Windows环境下的PATH：提供可执行文件的绝对路径。可执行文件在CMD（command prompt）中
       执行。在PATH中设置路径后，则运行改路径下的可执行文件时，可以直接输入该文件的无后缀名称来运行，因此在任何
       工程目录下，命令都可以执行。（注：Windows将各种内容用后缀区分，而基于Unix的操作系统（如Linux）将所有内容统一视为文件。）
@@ -61,4 +116,5 @@
     reveals.forEach(r => observer.observe(r));
   </script>
 </body>
+
 </html>
