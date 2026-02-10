@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>More Understanding runtime and memory</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>Extra notes for runtime and memory</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/technical.html">Technical</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/fanfiction.html">Fanfiction</a>
+    </nav>
+  </header>
+
+  <!-- content -->
+  <main class="reading">
+
+
+    <p class="reveal"> 
+        当我在LeetCode上反复提交同一个代码时，我发现Runtime和Memory不一定和上一次提交的结果一样。这说明Runtime和Memory不仅仅和代码本身相关，
+        还有更多的因素会影响Runtime的长短和Memory的占用。遂进行简单了解，并将有趣的知识简要记述在这里。
+    </p>
+
+    <p class="reveal">
+        Runtime:<br />
+        <li>Cache warmth： instruction cache和data cache是否要重新读入数据。<br /></li>
+        <li>Brach predictor state：见下文<br /></li>
+        <li>Heap layout：sequential access比random access快。因为sequential access地址是连续的，而random access（如使用指针）
+            有额外的调用过程，因此花费的时间也更多。<br /></li>
+        <li>Operating System Scheduling<br /></li>
+        <br />
+        Memory:<br />
+        <li>Padding：处理器读取数据时是按照固定大小一块一块读取的。当数据大小不够时，compiler会自动补充padding，用memory usage换运行速度。<br /></li>
+        <li>Standard Library：和Heap layout相关。例如vector连续而list要用指针。<br /></li>
+        <li>Visual layout：这让分支预测器难以预测。例如 base-> foo()。<br /></li>
+    </p>
+
+    <p class="reveal">Runtime - 时钟频率（clock speed）<br />
+        时钟每秒振动频率（主频，clock speed）直接决定了处理器的指令执行速度。时钟每次振动产生脉冲信号，而每个时钟脉冲允许处理器执行一步操作。
+        因此高频意味着处理器在单位时间内产生的脉冲信号更多，从而可以在单位时间内完成更多的逻辑操作（如数据传输、计算等）。更高的频率意味着周期时间越短，
+        因此同一指令也能在更短的时间内完成。<br />
+        时钟频率越高，对能耗和散热的要求就越高。<br />
+        外频（Base clock）：主板时钟频率，与CPU处理器与外界（内存、主板芯片组等）交换数据的速度直接正相关。
+        倍频（Multiplier）：一个乘数（见下计算公式），使得处理器能以高于外部总线速度运行。<br />
+        主频 = 外频 * 倍频 <br />
+        *超频（overclocking）：一种由于人为调整倍频或外频以使得硬件达到更高性能的现象。超外频提升整体性能，但会产生主板过热等隐患；
+        超倍频主要影响处理器速度，同样可能会使得处理器过热。因此超频需要注意散热和功耗。<br />
+        *降频（underlocking）：和超频相反，通过人为调整倍频或外频而降低发热和功耗的现象。<br />
+    </p>
+
+    <p class="reveal">Runtime - 时钟（clock） <br /> 
+        时钟每次振动产生脉冲信号，而每个时钟脉冲允许处理器执行一步操作。时钟控制逻辑门电路（logic gate）和触发器（trigger）。
+        触发器在每次收时钟频率（见下一个定义）得到新的数值，并交由逻辑门处理运行新数值。<br />
+        将逻辑门分散成区块，并让触发器链接这些小区块组，可以有效减少指令运行需要的周期。
+    </p>
+
+    <p class="reveal">Runtime - 指令流水线（Instruction Pipeline） <br />
+        指令流水线（简称流水线）指将计算机指令的处理过程拆分为四个独立步骤、并让不同指令的各步操作在硬件上重叠并执行的技术。
+        这四个独立阶段按顺序为“取指、译码、执行、写回”（Fetch, Decode, Execute, Write-back）。将指令拆分成多个阶段，正好对应先前逻辑门被分散的
+        各个区块。<br />
+        流水线级数是指处理器将一条指令或操作的处理过程分解为若干个独立且串行的阶段。这些阶段的数目即为级数。级数越多，意味着指令被切分得
+        越细、每一级逻辑越简单，也有助于提升处理器主频和吞吐率，
+        但也会带来更高的寄存器（Register）面积开销和分支预测（Branch Prediction，见下文）失败时的恢复成本。
+    </p>
+
+    <p class="reveal">Runtime - 分支预测器 <br />
+        分支预测器时一种数字电路。它在分支指令执行前，会根据运行历史记录去尝试识别一种数据在此分支指令下被处理的隐含模式，从而在分支指令执行的同时
+        猜测哪个分支会被执行，并事先执行这个后续执行分支的命令。<br />
+        *分支指令：条件分支通常有两路后续执行分支。若判断结果为no token，则跳过JMP指令继续执行；若判断结果为token,则执行JMP指令（跳转到另一块
+        程序内存执行）<br />
+        分支预测器可以避免流水线冒泡（bubling）。如果没有分支预测器，流水线会等到分支指令通过执行阶段才会把下一条指令送入取指阶段，由此便产生了
+        额外的等待时间。因此分支预测器会在分支指令进入取指阶段时根据运行历史记录对指令的运行结果进行猜测，并根据猜测提前运行一个执行分支以减少
+        因为等待指令运行而造成潜在的时间浪费。这种猜测语句并执行的运行方法叫做投机执行。<br />
+        在分支指令执行后，如果分支预测器猜对了，那么流水线正常运行。如果分支预测器猜错了，流水线中投机执行的中间结果全部抛弃，
+        处理器重新获取正确的分支路线上的指令执行。因此，预测失败会浪费写回之前的流水线级数，根据不同的处理器构造损失10到20个时钟周期。
+    </p>
+      
+    
+  </main>
+
+  <!-- 🔹 Scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
