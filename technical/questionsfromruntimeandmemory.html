@@ -23,7 +23,93 @@
 
 
     <p class="reveal"> 
-        当我在LeetCode上反复提交同一个代码时，我发现Runtime和Memory不一定和上一次提交的结果一样。这说明Runtime和Memory不仅仅和代码本身相关，
+              When I repeatedly submit the same code on LeetCode, I notice that the Runtime and Memory results are not necessarily the same as the previous submission.
+        This shows that Runtime and Memory are not determined solely by the code itself;
+        there are many other factors that affect execution time and memory usage. I therefore did some brief research
+        and recorded some interesting findings here.
+    </p>
+    <br />
+    <p class="reveal">
+        *Runtime:<br />
+        -Cache warmth: whether the instruction cache and data cache need to reload data.<br />
+        -Branch predictor state: see below.<br />
+        -Heap layout: sequential access is faster than random access. This is because sequential access uses contiguous
+            memory addresses, while random access (such as using pointers)
+            involves additional indirection, which costs more time.<br />
+        -Operating System scheduling<br />
+        *Memory:<br />
+        -Padding: processors read data in fixed-size blocks. When the actual data size is insufficient,
+            the compiler automatically adds padding, trading memory usage for execution speed.<br />
+        -Standard Library: related to heap layout. For example, vector stores elements contiguously, while list uses pointers.<br />
+        -Virtual layout: this makes branch prediction harder, for example, base->foo().<br />
+    </p>
+    <br />
+    <p class="reveal">Runtime - Clock speed<br />
+        The clock frequency (main frequency, clock speed) directly determines the instruction execution speed of a processor.
+        Each clock oscillation generates a pulse signal, and each clock pulse allows the processor to perform one step of operation.
+        Therefore, a higher frequency means the processor generates more pulse signals per unit time,
+        allowing it to complete more logical operations (such as data transfer and computation) within the same time.
+        A higher frequency also means a shorter clock period,
+        so the same instruction can be completed in less time.<br />
+        The higher the clock frequency, the higher the requirements for power consumption and heat dissipation.<br />
+        Base clock: the motherboard clock frequency, which is directly related to the speed at which the CPU exchanges data
+        with external components (memory, chipset, etc.).
+        Multiplier: a factor (see the formula below) that allows the processor to run at a speed higher than the external bus speed.<br />
+        CPU frequency = Base clock × Multiplier <br />
+        *Overclocking: a phenomenon in which hardware is manually configured (by adjusting the multiplier or base clock)
+        to achieve higher performance. Increasing the base clock improves overall performance but may cause issues such as
+        motherboard overheating; increasing the multiplier mainly affects processor speed and may also lead to CPU overheating.
+        Therefore, overclocking requires careful attention to cooling and power consumption.<br />
+        *Underclocking: the opposite of overclocking, where the multiplier or base clock is manually reduced
+        to lower heat generation and power consumption.<br />
+    </p>
+    <br />
+    <p class="reveal">Runtime - Clock <br /> 
+        Each clock oscillation generates a pulse signal, and each clock pulse allows the processor to perform one step of operation.
+        The clock controls logic gates and flip-flops.
+        Flip-flops receive new values at each clock edge (see the next definition) and pass them to logic gates for processing.<br />
+        By splitting logic gates into blocks and linking these small blocks with flip-flops,
+        the number of cycles required to execute instructions can be effectively reduced.
+    </p>
+    <br />
+    <p class="reveal">Runtime - Instruction Pipeline <br />
+        Instruction pipelining (pipeline for short) is a technique that divides the processing of computer instructions
+        into four independent stages and allows different instructions to overlap and execute these stages in hardware.
+        These four stages, in order, are “Fetch, Decode, Execute, Write-back.”
+        Splitting instructions into multiple stages corresponds exactly to the previously mentioned
+        distribution of logic gates into separate blocks.<br />
+        The pipeline depth refers to the number of independent and sequential stages into which a processor divides
+        the execution of an instruction or operation. The greater the depth, the more finely instructions are split,
+        and the simpler the logic at each stage, which helps increase clock frequency and throughput.
+        However, it also leads to higher register area overhead and higher recovery costs when branch prediction
+        (see below) fails.
+    </p>
+    <br />
+    <p class="reveal">Runtime - Branch Predictor <br />
+        A branch predictor is a type of digital circuit. Before a branch instruction is executed,
+        it attempts to identify implicit patterns in how data is handled under this branch instruction
+        based on execution history. While the branch instruction is being processed,
+        it guesses which branch will be taken and speculatively executes the instructions
+        of that subsequent branch in advance.<br />
+        *Branch instruction: a conditional branch usually has two possible execution paths.
+        If the condition result is “not taken,” the JMP instruction is skipped and execution continues sequentially;
+        if the result is “taken,” the JMP instruction is executed, jumping to another block of program memory.<br />
+        Branch predictors can avoid pipeline bubbling. Without a branch predictor, the pipeline must wait
+        until the branch instruction passes the execute stage before sending the next instruction into the fetch stage,
+        which introduces additional waiting time. Therefore, when a branch instruction enters the fetch stage,
+        the branch predictor uses execution history to guess the outcome and speculatively execute one branch in advance,
+        reducing potential time wasted waiting for instruction results.
+        This method of guessing and executing is called speculative execution.<br />
+        After the branch instruction is executed, if the prediction is correct, the pipeline continues normally.
+        If the prediction is wrong, all intermediate results from speculative execution in the pipeline are discarded,
+        and the processor fetches and executes instructions from the correct branch path.
+        As a result, a misprediction wastes the pipeline stages before write-back,
+        typically costing 10 to 20 clock cycles depending on the processor design.
+    </p>
+    <br />
+
+      
+    <p>当我在LeetCode上反复提交同一个代码时，我发现Runtime和Memory不一定和上一次提交的结果一样。这说明Runtime和Memory不仅仅和代码本身相关，
         还有更多的因素会影响Runtime的长短和Memory的占用。遂进行简单了解，并将有趣的知识简要记述在这里。
     </p>
     <br />
@@ -100,3 +186,4 @@
 </body>
 
 </html>
+
